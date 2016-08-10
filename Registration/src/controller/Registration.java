@@ -33,9 +33,16 @@ public class Registration extends HttpServlet {
 		}		
 		
 		if(command.equals("list")){
-			RegistrationBean [] list = RegistrationDAO.readList();	
-			request.setAttribute("list", list);
-			RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+			RegistrationBean [] registrationList = RegistrationDAO.readRegistrationList();	
+			request.setAttribute("registrationList", registrationList);
+			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+			rd.forward(request, response);
+			
+			return;
+		}else if(command.equals("attendance")){
+			RegistrationBean [] registrationList = RegistrationDAO.readRegistrationList();	
+			request.setAttribute("registrationList", registrationList);
+			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
 			rd.forward(request, response);
 			
 			return;

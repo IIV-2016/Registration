@@ -4,8 +4,7 @@
 <html lang="en">
 	<head>
 	</head>
-	
 	<body>
-	<img src = "<%=request.getContextPath()%>/example.jpg">
+	<img src="./example.jpg">
 	</body>
 </html>

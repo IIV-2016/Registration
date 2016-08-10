@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ page import="model.domain.RegistrationBean"%>
+<%
+	RegistrationBean[] registrationList = (RegistrationBean[]) request.getAttribute("registrationList");
+%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -8,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registration Admin</title>
+    
 
     <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,17 +31,26 @@
 					<th>attendance</th>
 				</tr>
 			</thead>
+			
 			<tbody>
+			<%
+				if (registrationList == null || registrationList.length == 0) {
+			%>
+			<%
+				} else {
+					RegistrationBean registration = null;
+					for (int i = 0; i < registrationList.length; i++) {
+						registration = registrationList[i];
+			%>			
 				<tr>
-					<td>1</td>
-					<td>Mark</td>
-					<td><button type="button" class="btn btn-default">Default</button></td>
+					<td><%=registration.getNumber()%></td>
+					<td><%=registration.getName()%></td>
+					<td><a class="btn btn-default" href="<%=request.getContextPath()%>/volunteer.do?command=attendance&number=<%=registration.getNumber()%>">attendance</a><td>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>Mark</td>
-					<td><button type="button" class="btn btn-default">Default</button></td>
-				</tr>			
+			<%
+					}
+				}
+			%>	
 			</tbody>
 		</table>
 	</div>

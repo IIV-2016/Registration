@@ -23,7 +23,7 @@ public class QRUtil {
 			g.drawImage(img,0,0,1121,1482,null);
 			g.setColor(Color.GRAY);
 			g.setFont(new Font("고딕체",Font.BOLD,30));
-			g.drawString("1234-1234-1234-1234", 50, 50);
+			g.drawString("test text", 50, 50);
 
 			ImageIO.write(image,"jpg",new File("./WebContent/example2.jpg"));
 			}catch(Exception e){

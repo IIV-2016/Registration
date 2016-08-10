@@ -23,16 +23,16 @@ public class RegistrationDAO{
 			Context initContext = new InitialContext();		
 			Context envContext = (Context)initContext.lookup("java:/comp/env");
 			source = (DataSource)envContext.lookup("jdbc/mysql");
-		} catch (NamingException e) {			
+		} catch (NamingException e) {	
 			e.printStackTrace();
 		}	
 	}
 	
-	public static RegistrationBean[] readList(){
+	public static RegistrationBean[] readRegistrationList(){
 		Connection con = null;	
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		RegistrationBean[] list  = null;
+		RegistrationBean[] registrationList = null;
 		ArrayList<RegistrationBean> alist = new ArrayList<RegistrationBean>();
 		String sql="SELECT NUMBER, NAME, ATTENDANCE FROM REGISTRATION";	
 		try {
@@ -44,15 +44,15 @@ public class RegistrationDAO{
 				alist.add(new RegistrationBean(rset.getInt(1), rset.getString(2), rset.getString(3)));
 			}
 			
-			list = new RegistrationBean[alist.size()];
-			alist.toArray(list);
+			registrationList = new RegistrationBean[alist.size()];
+			alist.toArray(registrationList);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
 			close(rset, pstmt, con);
 		}
-		return list;
+		return registrationList;
 	}
 	
 	public static void close(Statement stmt, Connection con){
